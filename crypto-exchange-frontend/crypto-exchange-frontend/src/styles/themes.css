@@ -1,0 +1,511 @@
+/* ===== PROFESSIONAL TOKEN SYSTEM ===== */
+/* Like Binance, Coinbase, Kraken */
+
+/* 1️⃣ BASE BRAND COLORS (Never Change) */
+:root {
+  /* Brand Identity */
+  --brand-primary: #3a6ff7;
+  --brand-accent: #00ffe0;
+  --brand-secondary: #5b86ff;
+  
+  /* Semantic Colors (Meaning-Based) */
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #fbbf24;
+  --info: #0ea5e9;
+  
+  /* Crypto Token Colors */
+  --crypto-btc: #f7931a;
+  --crypto-eth: #627eea;
+  --crypto-sol: #9945ff;
+  --crypto-usdt: #26a17b;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #3a6ff7 0%, #00ffe0 100%);
+  --gradient-warning: linear-gradient(135deg, #fbbf24 0%, #ef4444 100%);
+}
+
+/* 2️⃣ DARK THEME LAYER */
+:root[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-primary: #040608;
+  --bg-panel: #0b0f2a;
+  --bg-card: rgba(15, 15, 30, 0.8);
+  --bg-hover: rgba(58, 111, 247, 0.05);
+  
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #b0b8d4;
+  --text-muted: #6b7280;
+  
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  
+  /* Glows */
+  --glow-primary: rgba(58, 111, 247, 0.4);
+  --glow-cyan: rgba(0, 229, 255, 0.25);
+  --glow-success: rgba(16, 185, 129, 0.35);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* 3️⃣ LIGHT THEME LAYER */
+:root[data-theme="light"] {
+  /* Backgrounds */
+  --bg-primary: #f9fafc;
+  --bg-panel: rgba(245, 245, 250, 0.8);
+  --bg-card: #ffffff;
+  --bg-hover: #f1f5f9;
+  
+  /* Text */
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  
+  /* Borders */
+  --border-subtle: #e5e7eb;
+  --border-medium: #d1d5db;
+  --border-strong: #9ca3af;
+  
+  /* Glows */
+  --glow-primary: rgba(58, 111, 247, 0.4);
+  --glow-cyan: rgba(0, 229, 255, 0.25);
+  --glow-success: rgba(16, 185, 129, 0.35);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Smooth theme transition */
+*,
+*::before,
+*::after {
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Apply theme to body */
+body {
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Grid background for light theme */
+:root[data-theme="light"] body::before {
+  background-image:
+    linear-gradient(rgba(58, 111, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58, 111, 247, 0.04) 1px, transparent 1px);
+}
+
+/* Ambient glow for light theme */
+:root[data-theme="light"] body::after {
+  background: radial-gradient(ellipse, rgba(58, 111, 247, 0.06) 0%, transparent 70%);
+}
+
+/* Light theme specific overrides */
+:root[data-theme="light"] .layout {
+  background: var(--bg);
+}
+
+:root[data-theme="light"] .sidebar {
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+}
+
+:root[data-theme="light"] .topbar {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+:root[data-theme="light"] .main-content {
+  background: var(--bg);
+}
+
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .panel {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+}
+
+/* Light theme text colors */
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] h5,
+:root[data-theme="light"] h6 {
+  color: var(--text);
+}
+
+:root[data-theme="light"] p,
+:root[data-theme="light"] span,
+:root[data-theme="light"] div {
+  color: var(--text);
+}
+
+/* Light theme inputs */
+:root[data-theme="light"] input,
+:root[data-theme="light"] select,
+:root[data-theme="light"] textarea {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+:root[data-theme="light"] input:focus,
+:root[data-theme="light"] select:focus,
+:root[data-theme="light"] textarea:focus {
+  border-color: var(--primary);
+}
+
+/* Light theme buttons */
+:root[data-theme="light"] button {
+  color: var(--text);
+}
+
+/* Light theme scrollbar */
+:root[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg2);
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--border2);
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+
+/* ===== COMPREHENSIVE LIGHT THEME OVERRIDES ===== */
+
+/* Layout Components */
+:root[data-theme="light"] .layout {
+  background: var(--bg);
+}
+
+:root[data-theme="light"] .sidebar {
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+}
+
+:root[data-theme="light"] .topbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+:root[data-theme="light"] .main-content,
+:root[data-theme="light"] .main {
+  background: var(--bg);
+}
+
+:root[data-theme="light"] .right-panel {
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+}
+
+/* Cards and Panels */
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .panel,
+:root[data-theme="light"] .stat-card,
+:root[data-theme="light"] .market-table,
+:root[data-theme="light"] .chart-hero,
+:root[data-theme="light"] .portfolio-section,
+:root[data-theme="light"] .order-book,
+:root[data-theme="light"] .trade-panel,
+:root[data-theme="light"] .recent-trades,
+:root[data-theme="light"] .fear-greed {
+  background: var(--bg2);
+  border-color: var(--border);
+}
+
+/* Wallet Page */
+:root[data-theme="light"] .wallet-page,
+:root[data-theme="light"] .wallet-content,
+:root[data-theme="light"] .balance-card,
+:root[data-theme="light"] .assets-table,
+:root[data-theme="light"] .deposit-main-full,
+:root[data-theme="light"] .withdraw-card,
+:root[data-theme="light"] .transfer-card,
+:root[data-theme="light"] .history-table {
+  background: var(--bg2);
+  border-color: var(--border);
+}
+
+:root[data-theme="light"] .wallet-row:hover,
+:root[data-theme="light"] .table-row:hover {
+  background: var(--bg3);
+}
+
+/* Buy Crypto Page */
+:root[data-theme="light"] .buy-crypto-page,
+:root[data-theme="light"] .buy-content,
+:root[data-theme="light"] .payment-form,
+:root[data-theme="light"] .amount-section {
+  background: var(--bg);
+}
+
+:root[data-theme="light"] .payment-method-btn,
+:root[data-theme="light"] .crypto-btn-buy,
+:root[data-theme="light"] .quick-amount-btn {
+  background: var(--bg2);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+:root[data-theme="light"] .payment-method-btn.active,
+:root[data-theme="light"] .crypto-btn-buy.active {
+  background: rgba(58, 111, 247, 0.1);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Text Colors */
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] h5,
+:root[data-theme="light"] h6 {
+  color: var(--text);
+}
+
+:root[data-theme="light"] p,
+:root[data-theme="light"] span:not(.coin-icon):not(.tick-change),
+:root[data-theme="light"] div {
+  color: var(--text);
+}
+
+:root[data-theme="light"] .muted,
+:root[data-theme="light"] .text-secondary,
+:root[data-theme="light"] .nav-label,
+:root[data-theme="light"] .stat-label,
+:root[data-theme="light"] .form-label {
+  color: var(--text-secondary);
+}
+
+/* Inputs and Forms */
+:root[data-theme="light"] input,
+:root[data-theme="light"] select,
+:root[data-theme="light"] textarea {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+:root[data-theme="light"] input:focus,
+:root[data-theme="light"] select:focus,
+:root[data-theme="light"] textarea:focus {
+  border-color: var(--primary);
+  background: var(--bg);
+}
+
+:root[data-theme="light"] input::placeholder,
+:root[data-theme="light"] textarea::placeholder {
+  color: var(--muted);
+}
+
+/* Buttons */
+:root[data-theme="light"] .btn-ghost {
+  background: transparent;
+  border-color: var(--border2);
+  color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .btn-ghost:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+:root[data-theme="light"] button:not(.btn-primary):not(.btn-ghost):not(.buy-submit-btn) {
+  color: var(--text);
+  background: var(--bg2);
+  border-color: var(--border);
+}
+
+/* Navigation */
+:root[data-theme="light"] .nav-item {
+  color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .nav-item:hover {
+  background: var(--bg3);
+  color: var(--text);
+}
+
+:root[data-theme="light"] .nav-item.active {
+  background: rgba(58, 111, 247, 0.1);
+  color: var(--primary);
+}
+
+/* Tables */
+:root[data-theme="light"] .table-head,
+:root[data-theme="light"] .ob-head,
+:root[data-theme="light"] .rt-head {
+  background: var(--bg3);
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .table-row,
+:root[data-theme="light"] .ob-row,
+:root[data-theme="light"] .rt-row {
+  border-color: var(--border);
+}
+
+:root[data-theme="light"] .table-row:hover,
+:root[data-theme="light"] .ob-row:hover,
+:root[data-theme="light"] .rt-row:hover {
+  background: var(--bg3);
+}
+
+/* Modals */
+:root[data-theme="light"] .modal-overlay {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+:root[data-theme="light"] .modal-content {
+  background: var(--bg);
+  border-color: var(--border);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Notifications */
+:root[data-theme="light"] .notification-dropdown {
+  background: var(--bg);
+  border-color: var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+:root[data-theme="light"] .notification-item {
+  border-color: var(--border);
+}
+
+:root[data-theme="light"] .notification-item:hover {
+  background: var(--bg3);
+}
+
+/* Charts */
+:root[data-theme="light"] .chart-area,
+:root[data-theme="light"] .portfolio-chart-section,
+:root[data-theme="light"] .allocation-section {
+  background: var(--bg2);
+}
+
+/* Scrollbar */
+:root[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg2);
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--border2);
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Specific Component Overrides */
+:root[data-theme="light"] .portfolio-mini {
+  background: var(--bg3);
+  border-color: var(--border);
+}
+
+:root[data-theme="light"] .ticker-scroll::before {
+  background: linear-gradient(90deg, var(--bg), transparent);
+}
+
+:root[data-theme="light"] .ticker-scroll::after {
+  background: linear-gradient(-90deg, var(--bg), transparent);
+}
+
+:root[data-theme="light"] .coin-icon {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Borders and Dividers */
+:root[data-theme="light"] .border,
+:root[data-theme="light"] hr {
+  border-color: var(--border);
+}
+
+/* Shadows */
+:root[data-theme="light"] .card:hover,
+:root[data-theme="light"] .stat-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Intro/Auth Pages */
+:root[data-theme="light"] .intro-page,
+:root[data-theme="light"] .auth-container {
+  background: var(--bg);
+}
+
+:root[data-theme="light"] .intro-hero,
+:root[data-theme="light"] .auth-left,
+:root[data-theme="light"] .auth-right {
+  background: var(--bg2);
+}
+
+/* Trade Page */
+:root[data-theme="light"] .trade-layout,
+:root[data-theme="light"] .trade-chart-section,
+:root[data-theme="light"] .trade-orderbook-section,
+:root[data-theme="light"] .trade-panel-section {
+  background: var(--bg2);
+  border-color: var(--border);
+}
+
+/* Deposit Page */
+:root[data-theme="light"] .deposit-section-full,
+:root[data-theme="light"] .address-box-full,
+:root[data-theme="light"] .bank-details-full {
+  background: var(--bg2);
+  border-color: var(--border);
+}
+
+/* Markets Page */
+:root[data-theme="light"] .markets-controls,
+:root[data-theme="light"] .filter-tabs,
+:root[data-theme="light"] .market-stat-card {
+  background: var(--bg2);
+  border-color: var(--border);
+}
+
+/* Ensure primary colors stay consistent */
+:root[data-theme="light"] .btn-primary,
+:root[data-theme="light"] .buy-submit-btn {
+  background: linear-gradient(135deg, #3a6ff7 0%, #00ffe0 100%);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .logo {
+  color: var(--primary);
+}
+
+:root[data-theme="light"] .logo span {
+  color: var(--text);
+}
+
+/* Status colors remain the same */
+:root[data-theme="light"] .tick-change.up,
+:root[data-theme="light"] .stat-up,
+:root[data-theme="light"] .row-change.positive {
+  color: var(--success);
+}
+
+:root[data-theme="light"] .tick-change.down,
+:root[data-theme="light"] .stat-down,
+:root[data-theme="light"] .row-change.negative {
+  color: var(--error);
+}
