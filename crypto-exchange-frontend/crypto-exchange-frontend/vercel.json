@@ -10,7 +10,7 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/((?!assets|favicon.ico|manifest.json|robots.txt|logo192.png|logo512.png|nft-images|index.html).*)",
       "dest": "/index.html"
     }
   ]
